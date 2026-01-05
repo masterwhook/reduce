@@ -154,7 +154,10 @@ target_include_directories(reduce PUBLIC ./)
 target_link_libraries(reduce reducelib)
 
 install(TARGETS reduce DESTINATION bin)
-install(FILES ../reduce_wwPDB_het_dict.txt DESTINATION .)
+
+# Install het dictionary to path specified by DICT_HOME
+get_filename_component(DICT_HOME_DIR ${DICT_HOME} PATH)
+install(FILES ../reduce_wwPDB_het_dict.txt DESTINATION ${DICT_HOME_DIR})
 
 # @todo Add configuration information to installed output so those who use
 # the library will have things configured correctly based on the target.
